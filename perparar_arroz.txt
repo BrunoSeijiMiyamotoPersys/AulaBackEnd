@@ -7,7 +7,7 @@ declare
 	tempo = 0;
 
 inicio
-	//adiciona arroz a panela
+	//adiciona arroz na panela
 	panela = ingredientes[0];
 	//adiciona agua a panela
 	panela = ingredientes[1];
