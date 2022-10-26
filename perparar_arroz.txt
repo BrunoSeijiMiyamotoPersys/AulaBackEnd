@@ -1,0 +1,29 @@
+Algoritmo Preparar arroz
+
+declare
+	ingredientes = ['arroz', 'agua', sal];
+	fogão = vetor();
+	panela = vetor();
+	tempo = 0;
+
+inicio
+	//adiciona arroz a panela
+	panela = ingredientes[0];
+	//adiciona agua a panela
+	panela = ingredientes[1];
+	// remove agua da panela (lavando arroz)
+	panela = remove.panela[1];
+	//adiciona agua novamente
+	panela = ingrediente[1];
+	//adiciona sal
+	panela = ingrediente[2];
+	//coloca panela no fogão (supondo que está ligado)
+	fogão = panela;
+	//deixar no fogao por 25 min 
+	enquanto (tempo < 25) {
+	  tempo++; 
+	}
+	//após 25 min retirar a panela
+	fogao = remove.panela;
+fim	
+	
