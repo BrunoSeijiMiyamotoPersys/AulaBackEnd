@@ -1,0 +1,9 @@
+/**
+ * 
+ */
+/**
+ * @author linux
+ *
+ */
+module firstProject {
+}
