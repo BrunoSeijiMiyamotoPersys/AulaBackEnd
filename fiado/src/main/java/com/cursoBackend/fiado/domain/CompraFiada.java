@@ -1,8 +1,6 @@
 package com.cursoBackend.fiado.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Objects;
@@ -13,6 +11,15 @@ import java.util.UUID;
 public class CompraFiada implements Serializable {
 
     private static final long serialVersionUID = 1L;
+
+    @ManyToOne
+    @JoinColumn(name = "cliente_id")
+    private Cliente cliente;
+
+    @ManyToOne
+    @JoinColumn(name = "estabelecimento_id")
+    private Estabelecimento estabelecimento;
+
     @Id
     private UUID id;
 
