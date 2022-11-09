@@ -1,101 +1,120 @@
 package com.cursoBackend.fiado.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
 import java.io.Serializable;
 import java.util.Objects;
 import java.util.UUID;
 
+import javax.persistence.Embedded;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import org.hibernate.annotations.GenericGenerator;
+
+import com.cursoBackend.fiado.dto.ClienteDto;
+
+
 @Entity
-@Table(name = "clientes")
+@Table(name = "cleintes")
 public class Cliente implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
 
-    private static final long serialVersionUID = 1L;
+	@Id
+	@GeneratedValue(generator = "uuid2", strategy = GenerationType.AUTO)
+	@GenericGenerator(name = "uuid2", strategy = "uuid2")
+	@org.hibernate.annotations.Type(type="uuid-char")
+	private UUID id;
+	
+	private String nome;
+	
+	private String documento;
+	
+	private String telefone;
+	
+	@Embedded
+	private Endereco endereco = new Endereco();
 
-    @Id
-    private UUID id;
+	public Cliente() {
 
-    private String nome;
+	}
 
-    private String documento;
+	public Cliente(String nome, String documento, String telefone, String rua, int numero) {
+		super();
+		this.nome = nome;
+		this.documento = documento;
+		this.telefone = telefone;
+	}
+	
+	public Cliente(ClienteDto dto) {
+		super();
+		this.nome = dto.getNome();
+		this.documento = dto.getDocumento();
+		this.telefone = dto.getTelefone();
+		this.endereco.setRua(dto.getEndereco().getRua());
+		this.endereco.setNumero(dto.getEndereco().getNumero());
+	}
 
-    private String telefone;
 
-    private String rua;
+	public Endereco getEndereco() {
+		return endereco;
+	}
 
-    private int numero;
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
+	}
 
-    public Cliente() {
-    }
+	public UUID getId() {
+		return id;
+	}
 
-    public Cliente(UUID id, String nome, String documento, String telefone, String rua, int numero) {
-        this.id = id;
-        this.nome = nome;
-        this.documento = documento;
-        this.telefone = telefone;
-        this.rua = rua;
-        this.numero = numero;
-    }
+	public void setId(UUID id) {
+		this.id = id;
+	}
 
-    public UUID getId() {
-        return id;
-    }
+	public String getNome() {
+		return nome;
+	}
 
-    public void setId(UUID id) {
-        this.id = id;
-    }
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
 
-    public String getNome() {
-        return nome;
-    }
+	public String getDocumento() {
+		return documento;
+	}
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
+	public void setDocumento(String documento) {
+		this.documento = documento;
+	}
 
-    public String getDocumento() {
-        return documento;
-    }
+	public String getTelefone() {
+		return telefone;
+	}
 
-    public void setDocumento(String documento) {
-        this.documento = documento;
-    }
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
+	}
 
-    public String getTelefone() {
-        return telefone;
-    }
+	
+	@Override
+	public int hashCode() {
+		return Objects.hash(id);
+	}
 
-    public void setTelefone(String telefone) {
-        this.telefone = telefone;
-    }
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Cliente other = (Cliente) obj;
+		return Objects.equals(id, other.id);
+	}
+	
 
-    public String getRua() {
-        return rua;
-    }
-
-    public void setRua(String rua) {
-        this.rua = rua;
-    }
-
-    public int getNumero() {
-        return numero;
-    }
-
-    public void setNumero(int numero) {
-        this.numero = numero;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Cliente cliente = (Cliente) o;
-        return id.equals(cliente.id);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id);
-    }
 }

@@ -1,9 +1,15 @@
 package com.cursoBackend.fiado.repository;
 
-import com.cursoBackend.fiado.domain.CompraFiada;
-import org.springframework.data.jpa.repository.JpaRepository;
-
 import java.util.UUID;
 
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.cursoBackend.fiado.domain.Cliente;
+import com.cursoBackend.fiado.domain.CompraFiada;
+
+
 public interface CompraFiadaRepository extends JpaRepository<CompraFiada, UUID> {
+
+	
+  
 }
