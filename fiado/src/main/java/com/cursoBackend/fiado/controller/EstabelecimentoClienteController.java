@@ -45,17 +45,17 @@ public class EstabelecimentoClienteController {
 		return ResponseEntity.status(HttpStatus.OK).body("");
 	}
 
-	@DeleteMapping(path = "{estabelecimentoId}/cliente/{clienteId}")
-	public ResponseEntity<Object> deleteCliente(
-			@RequestParam UUID estabelecimentoId,
-			@RequestParam UUID clientId) {
-		Optional<EstabelecimentoCliente> optionalEC = estabelecimentoClienteServices.findByEstabelecimentoAndCliente(estabelecimentoID, clienteID);
-
-		if (!optionalEC.isPresent()) {
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Cliente não existe na base de dados");
-		}
-		estabelecimentoClienteServices
-		return ResponseEntity.status(HttpStatus.OK).body("");
-	}
+//	@DeleteMapping(path = "{estabelecimentoId}/cliente/{clienteId}")
+//	public ResponseEntity<Object> deleteCliente(
+//			@RequestParam UUID estabelecimentoId,
+//			@RequestParam UUID clientId) {
+//		Optional<EstabelecimentoCliente> optionalEC = estabelecimentoClienteServices.findByEstabelecimentoAndCliente(estabelecimentoID, clienteID);
+//
+//		if (!optionalEC.isPresent()) {
+//			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Cliente não existe na base de dados");
+//		}
+//		//estabelecimentoClienteServices
+//		return ResponseEntity.status(HttpStatus.OK).body("");
+//	}
 
 }
