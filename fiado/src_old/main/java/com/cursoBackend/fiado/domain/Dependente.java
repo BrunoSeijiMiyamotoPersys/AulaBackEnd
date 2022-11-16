@@ -4,23 +4,26 @@ import java.io.Serializable;
 import java.util.Objects;
 import java.util.UUID;
 
-import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
-import com.cursoBackend.fiado.dto.ClienteDto;
-
 
 @Entity
-@Table(name = "cleintes")
-public class Cliente implements Serializable {
+@Table(name = "dependentes")
+public class Dependente implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
+	
+	@ManyToOne
+	@JoinColumn(name = "clinte_id")
+	private Cliente cliente;
 
 	@Id
 	@GeneratedValue(generator = "uuid2", strategy = GenerationType.AUTO)
@@ -34,45 +37,12 @@ public class Cliente implements Serializable {
 	
 	private String telefone;
 	
-	@Embedded
-	private Endereco endereco = new Endereco();
-
-	public Cliente() {
-
-	}
-
-	public Cliente(String nome, String documento, String telefone, String rua, int numero) {
-		super();
-		this.nome = nome;
-		this.documento = documento;
-		this.telefone = telefone;
-	}
+	private String rua;
 	
-	public Cliente(UUID id, String nome, String documento, String telefone, Endereco endereco) {
-		super();
-		this.id = id;
-		this.nome = nome;
-		this.documento = documento;
-		this.telefone = telefone;
-		this.endereco = endereco;
-	}
-	
-	public Cliente(ClienteDto dto) {
-		super();
-		this.nome = dto.getNome();
-		this.documento = dto.getDocumento();
-		this.telefone = dto.getTelefone();
-		this.endereco.setRua(dto.getEndereco().getRua());
-		this.endereco.setNumero(dto.getEndereco().getNumero());
-	}
+	private int numero;
 
+	public Dependente() {
 
-	public Endereco getEndereco() {
-		return endereco;
-	}
-
-	public void setEndereco(Endereco endereco) {
-		this.endereco = endereco;
 	}
 
 	public UUID getId() {
@@ -107,7 +77,31 @@ public class Cliente implements Serializable {
 		this.telefone = telefone;
 	}
 
+	public String getRua() {
+		return rua;
+	}
+
+	public void setRua(String rua) {
+		this.rua = rua;
+	}
+
+	public int getNumero() {
+		return numero;
+	}
+
+	public void setNumero(int numero) {
+		this.numero = numero;
+	}
 	
+
+	public Cliente getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
@@ -121,7 +115,7 @@ public class Cliente implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Cliente other = (Cliente) obj;
+		Dependente other = (Dependente) obj;
 		return Objects.equals(id, other.id);
 	}
 	

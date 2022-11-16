@@ -30,10 +30,7 @@ public class EstabelecimentoServices {
 		return estabelecimentoRepository.findAll();
 	}
 
-
-	public Optional<Estabelecimento> findById(UUID estabelecimentoId) {
-		
-		return estabelecimentoRepository.findById(estabelecimentoId);
+	public Optional<Estabelecimento> findById(UUID estabelecimentoID) {
+		return estabelecimentoRepository.findById(estabelecimentoID);
 	}
-	
 }

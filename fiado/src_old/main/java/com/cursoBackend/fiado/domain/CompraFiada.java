@@ -15,8 +15,6 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
-import com.cursoBackend.fiado.dto.CompraFiadaDto;
-
 @Entity
 @Table(name = "compras_fiadas")
 public class CompraFiada implements Serializable {
@@ -44,29 +42,18 @@ public class CompraFiada implements Serializable {
 	private int valor;
 	
 	private LocalDateTime data;
-	
-	private boolean foiPaga;
-
 
 	public CompraFiada() {
-		this.data = LocalDateTime.now();
+		// TODO Auto-generated constructor stub
 	}
 
-	public CompraFiada( String nome, String observacao, int valor) {
+	public CompraFiada(UUID id, String nome, String observacao, int valor, LocalDateTime data) {
 		super();
-
+		this.id = id;
 		this.nome = nome;
 		this.observacao = observacao;
 		this.valor = valor;
-		this.data = LocalDateTime.now();
-	}
-	
-	public CompraFiada(CompraFiadaDto dto) {
-		super();
-		this.nome = dto.getNome();
-		this.observacao = dto.getObservacao();
-		this.valor = dto.getValor();
-		this.data = LocalDateTime.now();
+		this.data = data;
 	}
 
 	public UUID getId() {
@@ -128,31 +115,6 @@ public class CompraFiada implements Serializable {
 			return false;
 		CompraFiada other = (CompraFiada) obj;
 		return Objects.equals(id, other.id);
-	}
-
-	public Cliente getCliente() {
-		return cliente;
-	}
-
-	public void setCliente(Cliente cliente) {
-		this.cliente = cliente;
-	}
-
-	public Estabelecimento getEstabelecimento() {
-		return estabelecimento;
-	}
-
-	public void setEstabelecimento(Estabelecimento estabelecimento) {
-		this.estabelecimento = estabelecimento;
-	}
-	
-
-	public boolean isFoiPaga() {
-		return foiPaga;
-	}
-
-	public void setFoiPaga(boolean foiPaga) {
-		this.foiPaga = foiPaga;
 	}
 	
 	
