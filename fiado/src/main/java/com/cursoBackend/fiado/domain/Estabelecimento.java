@@ -3,18 +3,18 @@ package com.cursoBackend.fiado.domain;
 import java.io.Serializable;
 import java.util.UUID;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import org.hibernate.annotations.GenericGenerator;
 import org.springframework.hateoas.RepresentationModel;
 
 import com.cursoBackend.fiado.dto.EstabelecimentoDto;
 
 @Entity
+@JsonInclude(JsonInclude.Include.NON_NULL)
 @Table(name = "establecimentos")
 public class Estabelecimento extends RepresentationModel<Estabelecimento> implements Serializable {
 
@@ -26,8 +26,11 @@ public class Estabelecimento extends RepresentationModel<Estabelecimento> implem
 	@org.hibernate.annotations.Type(type="uuid-char")
 	private UUID id;
 
+
+	@NotBlank(message = "O nome é obrigatório")
 	private String nome;
-	
+
+	@Column(length = 14)
 	private String telefone;
 	
 	private String documento;
